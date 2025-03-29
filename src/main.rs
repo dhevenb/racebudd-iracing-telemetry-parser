@@ -1,5 +1,6 @@
 mod parser;
 mod headers;
+mod utils;
 
 use headers::{FileInfo, SessionInfo};
 use parser::Parser;
