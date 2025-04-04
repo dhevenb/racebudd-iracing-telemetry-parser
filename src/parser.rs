@@ -1,15 +1,15 @@
 use std::fs::File;
 
-use crate::headers::{FILE_INFO_HEADER_BYTES_SIZE, SESSION_INFO_HEADER_BYTES_SIZE, SessionInfo, FileInfo};
+use crate::headers::{FILE_INFO_HEADER_BYTES_SIZE, SESSION_INFO_HEADER_BYTES_SIZE, VAR_INFO_BYTES_SIZE, FileInfo, SessionInfo, VarInfo};
+use crate::telemetry_data::Ticks;
 use crate::utils::{ReadSeek, read_file_bytes};
 
 pub struct Parser {
     box_ibt_file: Box<dyn ReadSeek>,
-
 }
 
 impl<'ibt> Parser {
-    pub fn new(ibt: &'ibt String) -> Self {
+    pub fn new(ibt: String) -> Self {
         Parser {
             box_ibt_file: create_box_ibt_file(ibt),
         }
@@ -36,9 +36,31 @@ impl<'ibt> Parser {
 
         SessionInfo::from(session_info_bytes)
     }
+
+    pub fn var_info(&mut self) -> VarInfo {
+        let var_info_bytes = read_file_bytes(
+            &mut self.box_ibt_file,
+            VAR_INFO_BYTES_SIZE,
+            SESSION_INFO_HEADER_BYTES_SIZE
+        ).unwrap();
+
+        VarInfo::from(var_info_bytes)
+    }
+
+    pub fn telemetry_data(&mut self) -> Ticks {
+        let tick_length = self.file_info().buf_len;
+        let buf_offset = self.file_info().buf_offset;
+
+        Ticks {
+            file: &mut self.box_ibt_file,
+            tick_length: tick_length,
+            buf_offset: buf_offset,
+            tick_number: 0,
+        }
+    }
 }
 
-fn create_box_ibt_file(ibt_file_path: &String) -> Box<dyn ReadSeek> {
+fn create_box_ibt_file(ibt_file_path: String) -> Box<dyn ReadSeek> {
     let file = File::open(&ibt_file_path).unwrap();
     // Create Box type for entire file (writes to heap)
     Box::new(file)
