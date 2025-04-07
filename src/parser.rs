@@ -37,14 +37,26 @@ impl<'ibt> Parser {
         SessionInfo::from(session_info_bytes)
     }
 
-    pub fn var_info(&mut self) -> VarInfo {
-        let var_info_bytes = read_file_bytes(
+    pub fn channels(&mut self) -> Vec<VarInfo> {
+        let num_vars = self.file_info().num_vars;
+        let var_header_buf_size = num_vars as usize * VAR_INFO_BYTES_SIZE;
+        let var_header_offset = self.file_info().var_header_offset as usize;
+        
+        let channel_data = read_file_bytes(
             &mut self.box_ibt_file,
-            VAR_INFO_BYTES_SIZE,
-            SESSION_INFO_HEADER_BYTES_SIZE
+            var_header_offset,
+            var_header_buf_size,
         ).unwrap();
 
-        VarInfo::from(var_info_bytes)
+        let channels: Vec<VarInfo> = (0..num_vars)
+            .map(|n| {
+                let start = n as usize * VAR_INFO_BYTES_SIZE;
+                let end = start + VAR_INFO_BYTES_SIZE;
+                VarInfo::from(channel_data[start..end].to_vec())
+            })
+            .collect();
+
+        channels
     }
 
     pub fn telemetry_data(&mut self) -> Ticks {

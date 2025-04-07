@@ -60,6 +60,7 @@ impl From<Vec<u8>> for SessionInfo {
     }
 }
 
+#[derive(Debug, Clone)]
 pub struct VarInfo {
     pub var_type: i32,
     pub offset: i32,

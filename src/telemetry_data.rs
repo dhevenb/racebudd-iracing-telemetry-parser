@@ -25,6 +25,7 @@ impl Iterator for Ticks<'_> {
 
 }
 
+#[derive(Debug, Clone)]
 pub struct Tick {
     bytes: Vec<u8>,
 }
@@ -70,6 +71,7 @@ impl Tick {
     }
 }
 
+#[derive(Debug)]
 pub enum ChannelValue {
     Char(char),
     Bool(bool),
