@@ -3,12 +3,13 @@ use crate::headers::VarInfo;
 
 pub struct Ticks<'a> {
     pub file: &'a mut Box<dyn ReadSeek>,
+    pub channels: Vec<VarInfo>,
     pub tick_length: i32,
     pub buf_offset: i32,
-    pub tick_number: i32, 
+    pub tick_number: i32,
 }
 
-impl Iterator for Ticks<'_> {
+impl<'a> Iterator for Ticks<'a> {
     type Item = Tick;
 
     fn next(&mut self) -> Option<Self::Item> {
@@ -17,17 +18,22 @@ impl Iterator for Ticks<'_> {
         match read_file_bytes(self.file, tick_start_pos as usize, self.tick_length as usize) {
             Ok(bytes) => {
                 self.tick_number += 1;
-                Some(Tick{bytes})
+                let channels = self.channels.clone();
+
+                Some(Tick {
+                    bytes,
+                    channels,
+                })
             },
             Err(_) => None,
         }
     }
-
 }
 
 #[derive(Debug, Clone)]
 pub struct Tick {
     bytes: Vec<u8>,
+    channels: Vec<VarInfo>,
 }
 
 impl Tick {

@@ -9,7 +9,7 @@ pub struct Parser {
 }
 
 impl<'ibt> Parser {
-    pub fn new(ibt: String) -> Self {
+    pub fn new(ibt: &'ibt str) -> Self {
         Parser {
             box_ibt_file: create_box_ibt_file(ibt),
         }
@@ -62,9 +62,11 @@ impl<'ibt> Parser {
     pub fn telemetry_data(&mut self) -> Ticks {
         let tick_length = self.file_info().buf_len;
         let buf_offset = self.file_info().buf_offset;
+        let channels = self.channels();
 
         Ticks {
             file: &mut self.box_ibt_file,
+            channels: channels,
             tick_length: tick_length,
             buf_offset: buf_offset,
             tick_number: 0,
@@ -72,7 +74,7 @@ impl<'ibt> Parser {
     }
 }
 
-fn create_box_ibt_file(ibt_file_path: String) -> Box<dyn ReadSeek> {
+fn create_box_ibt_file(ibt_file_path: &str) -> Box<dyn ReadSeek> {
     let file = File::open(&ibt_file_path).unwrap();
     // Create Box type for entire file (writes to heap)
     Box::new(file)
