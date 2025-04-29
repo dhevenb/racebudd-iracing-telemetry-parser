@@ -3,13 +3,11 @@ mod headers;
 mod telemetry_data;
 mod utils;
 
-use std::{collections::HashMap};
+use std::collections::HashMap;
 
 use headers::{FileInfo, SessionInfo, VarInfo};
 use parser::Parser;
 use telemetry_data::{Tick, Ticks};
-
-use itelem::IbtReader;
 
 pub struct RaceBuddTelem {
     parser: Parser,
