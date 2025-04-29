@@ -1,7 +1,7 @@
-use std::io::{Read, Seek, SeekFrom};
+use std::{fmt::Debug, io::{Read, Seek, SeekFrom}};
 
-pub trait ReadSeek: Read + Seek {}
-impl<T: Read + Seek> ReadSeek for T {}
+pub trait ReadSeek: Read + Seek + Debug {}
+impl<T: Read + Seek + Debug> ReadSeek for T {}
 
 pub fn read_file_bytes(file: &mut Box<dyn ReadSeek>, from: usize, header_size: usize) -> Result<Vec<u8>, ()> {
     // Create new buffer preloaded with 0 at the specified header size

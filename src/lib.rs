@@ -39,6 +39,32 @@ impl<'a> RaceBuddTelem {
         get_lap_indices_with_sequential_search(self.telemetry_data(), &lap_var)
     }
 
+    // Returns all lap data for the given laps
+    pub fn get_lap_data(&mut self, laps: Vec<i32>) -> HashMap<i32, Vec<Tick>> {
+        // set lap_data to expected size of laps
+        let mut lap_data: HashMap<i32, Vec<Tick>> = HashMap::new();
+        let lap_indices = self.lap_indices();
+        let mut telemetry_data = self.telemetry_data();
+
+        // Iterate through each target lap
+        for lap in laps {
+            let mut data: Vec<Tick> = Vec::new();
+            let lap_first_index = lap_indices[&lap];
+            let lap_last_index = lap_indices[&(lap + 1)] - 1;
+
+            // Jump straight to target lap first index
+            if let Some(tick) = telemetry_data.nth(lap_first_index as usize) {
+                for _ in lap_first_index..=lap_last_index {
+                    if let Some(tick) = telemetry_data.next() {
+                        data.push(tick);
+                    }
+                }
+            }
+
+            lap_data.insert(lap, data);
+        }
+        lap_data
+    }
 }
 
 // Returns indices of each laps first Tick

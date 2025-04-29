@@ -1,6 +1,7 @@
 use crate::utils::{read_file_bytes, ReadSeek};
 use crate::headers::VarInfo;
 
+#[derive(Debug)]
 pub struct Ticks<'a> {
     pub file: &'a mut Box<dyn ReadSeek>,
     pub channels: Vec<VarInfo>,
