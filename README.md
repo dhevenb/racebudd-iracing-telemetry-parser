@@ -1,274 +1,62 @@
-### Example Available Channels
+# RaceBudd iRacing Agent
 
-SessionTime
-SessionTick
-SessionNum
-SessionState
-SessionUniqueID
-SessionFlags
-SessionTimeRemain
-SessionLapsRemain
-SessionLapsRemainEx
-SessionTimeTotal
-SessionLapsTotal
-SessionJokerLapsRemain
-SessionOnJokerLap
-SessionTimeOfDay
-DriverMarker
-PushToTalk
-PushToPass
-ManualBoost
-ManualNoBoost
-IsOnTrack
-FrameRate
-CpuUsageFG
-GpuUsage
-ChanAvgLatency
-ChanLatency
-ChanQuality
-ChanPartnerQuality
-CpuUsageBG
-ChanClockSkew
-MemPageFaultSec
-MemSoftPageFaultSec
-PlayerCarPosition
-PlayerCarClassPosition
-PlayerCarClass
-PlayerTrackSurface
-PlayerTrackSurfaceMaterial
-PlayerCarIdx
-PlayerCarTeamIncidentCount
-PlayerCarMyIncidentCount
-PlayerCarDriverIncidentCount
-PlayerCarWeightPenalty
-PlayerCarPowerAdjust
-PlayerCarDryTireSetLimit
-PlayerCarTowTime
-PlayerCarInPitStall
-PlayerCarPitSvStatus
-PlayerTireCompound
-PlayerFastRepairsUsed
-PaceMode
-OnPitRoad
-SteeringWheelAngle
-Throttle
-Brake
-Clutch
-Gear
-RPM
-Lap
-LapCompleted
-LapDist
-LapDistPct
-CarDistAhead
-CarDistBehind
-LapBestLap
-LapBestLapTime
-LapLastLapTime
-LapCurrentLapTime
-LapLasNLapSeq
-LapLastNLapTime
-LapBestNLapLap
-LapBestNLapTime
-LapDeltaToBestLap
-LapDeltaToBestLap_DD
-LapDeltaToBestLap_OK
-LapDeltaToOptimalLap
-LapDeltaToOptimalLap_DD
-LapDeltaToOptimalLap_OK
-LapDeltaToSessionBestLap
-LapDeltaToSessionBestLap_DD
-LapDeltaToSessionBestLap_OK
-LapDeltaToSessionOptimalLap
-LapDeltaToSessionOptimalLap_DD
-LapDeltaToSessionOptimalLap_OK
-LapDeltaToSessionLastlLap
-LapDeltaToSessionLastlLap_DD
-LapDeltaToSessionLastlLap_OK
-Speed
-Yaw
-YawNorth
-Pitch
-Roll
-EnterExitReset
-Lat
-Lon
-Alt
-TrackTemp
-TrackTempCrew
-AirTemp
-TrackWetness
-Skies
-AirDensity
-AirPressure
-WindVel
-WindDir
-RelativeHumidity
-FogLevel
-Precipitation
-SolarAltitude
-SolarAzimuth
-WeatherDeclaredWet
-PitsOpen
-PitRepairLeft
-PitOptRepairLeft
-PitstopActive
-FastRepairUsed
-FastRepairAvailable
-LFTiresUsed
-RFTiresUsed
-LRTiresUsed
-RRTiresUsed
-LeftTireSetsUsed
-RightTireSetsUsed
-FrontTireSetsUsed
-RearTireSetsUsed
-TireSetsUsed
-LFTiresAvailable
-RFTiresAvailable
-LRTiresAvailable
-RRTiresAvailable
-LeftTireSetsAvailable
-RightTireSetsAvailable
-FrontTireSetsAvailable
-RearTireSetsAvailable
-TireSetsAvailable
-IsOnTrackCar
-SteeringWheelAngleMax
-ShiftPowerPct
-ShiftGrindRPM
-ThrottleRaw
-BrakeRaw
-ClutchRaw
-HandbrakeRaw
-BrakeABSactive
-BrakeABScutPct
-EngineWarnings
-FuelLevelPct
-PitSvFlags
-PitSvLFP
-PitSvRFP
-PitSvLRP
-PitSvRRP
-PitSvFuel
-PitSvTireCompound
-P2P_Status
-P2P_Count
-SteeringWheelPctTorque
-SteeringWheelPctTorqueSign
-SteeringWheelPctTorqueSignStops
-SteeringWheelPctIntensity
-SteeringWheelPctSmoothing
-SteeringWheelPctDamper
-SteeringWheelLimiter
-SteeringWheelMaxForceNm
-SteeringWheelUseLinear
-ShiftIndicatorPct
-TireLF_RumblePitch
-TireRF_RumblePitch
-TireLR_RumblePitch
-TireRR_RumblePitch
-SteeringWheelTorque_ST
-SteeringWheelTorque
-VelocityZ
-VelocityY
-VelocityX
-YawRate
-PitchRate
-RollRate
-VertAccel
-LatAccel
-LongAccel
-dcStarter
-dcPitSpeedLimiterToggle
-dpRFTireChange
-dpLFTireChange
-dpRRTireChange
-dpLRTireChange
-dpFuelFill
-dpFuelAutoFillEnabled
-dpFuelAutoFillActive
-dpWindshieldTearoff
-dpFuelAddKg
-dpFastRepair
-dpLFTireColdPress
-dpRFTireColdPress
-dpLRTireColdPress
-dpRRTireColdPress
-dcToggleWindshieldWipers
-dcTriggerWindshieldWipers
-FuelUsePerHour
-Voltage
-WaterTemp
-WaterLevel
-FuelPress
-OilTemp
-OilPress
-OilLevel
-ManifoldPress
-FuelLevel
-Engine0_RPM
-RFbrakeLinePress
-RFspeed
-RFpressure
-RFcoldPressure
-RFtempL
-RFtempM
-RFtempR
-RFtempCL
-RFtempCM
-RFtempCR
-RFwearL
-RFwearM
-RFwearR
-LFbrakeLinePress
-LFspeed
-LFpressure
-LFcoldPressure
-LFtempL
-LFtempM
-LFtempR
-LFtempCL
-LFtempCM
-LFtempCR
-LFwearL
-LFwearM
-LFwearR
-RRbrakeLinePress
-RRspeed
-RRpressure
-RRcoldPressure
-RRtempL
-RRtempM
-RRtempR
-RRtempCL
-RRtempCM
-RRtempCR
-RRwearL
-RRwearM
-RRwearR
-LRbrakeLinePress
-LRspeed
-LRpressure
-LRcoldPressure
-LRtempL
-LRtempM
-LRtempR
-LRtempCL
-LRtempCM
-LRtempCR
-LRwearL
-LRwearM
-LRwearR
-LRshockDefl
-LRshockVel
-RRshockDefl
-RRshockVel
-LFshockDefl
-LFshockVel
-RFshockDefl
-RFshockVel
-LFrideHeight
-RFrideHeight
-LRrideHeight
-RRrideHeight
+A lot of credit goes to these two libraries: https://github.com/gmartsenkov/itelem and https://github.com/SkippyZA/ibt-telemetry
+
+## Overview
+
+The RaceBuddy iRacing Agent is designed to provide developers with an easy-to-use Rust library that accesses telemetry data and all available channel values. The goal of this library is to abstract the logic around telemetry data and instead allow the iRacing development community to focus on building end-user applications.
+
+## Available Data Channels
+
+The agent provides access to numerous data channels, including but not limited to:
+
+### Session Information
+- Session time and state
+- Lap counts and timing
+- Track conditions
+- Weather data
+
+### Driver & Car Data
+- Position and timing
+- Speed and acceleration
+- Steering, throttle, and brake inputs
+- Gear and RPM information
+- Tire data and wear
+- Engine telemetry
+
+### Track & Environment
+- Track temperature
+- Weather conditions
+- Air density and pressure
+- Wind information
+
+### Mechanical Data
+- Tire pressures and temperatures
+- Shock data
+- Ride height
+- Engine parameters
+- Fuel consumption
+
+## Installation
+
+[Installation instructions to be added]
+
+## Usage
+
+[Usage instructions to be added]
+
+## Configuration
+
+[Configuration details to be added]
+
+## Contributing
+
+[Contribution guidelines to be added]
+
+## License
+
+[License information to be added]
+
+## Support
+
+[Support information to be added]
