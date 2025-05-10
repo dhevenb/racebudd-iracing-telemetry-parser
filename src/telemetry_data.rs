@@ -432,3 +432,86 @@ impl Tick {
         cfsr_ride_height => "CFSRrideHeight"
     }
 }
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn test_channel_value_char() {
+        let value = ChannelValue::Char('A');
+        assert_eq!(value.char(), 'A');
+    }
+
+    #[test]
+    fn test_channel_value_bool() {
+        let value = ChannelValue::Bool(true);
+        assert!(value.bool());
+    }
+
+    #[test]
+    fn test_channel_value_int() {
+        let value = ChannelValue::Int(42);
+        assert_eq!(value.int(), 42);
+    }
+
+    #[test]
+    fn test_channel_value_float32() {
+        let value = ChannelValue::Float32(3.14);
+        assert_eq!(value.float_32(), 3.14);
+    }
+
+    #[test]
+    fn test_channel_value_float64() {
+        let value = ChannelValue::Float64(3.14159);
+        assert_eq!(value.float_64(), 3.14159);
+    }
+
+    #[test]
+    fn test_channel_value_bitfield() {
+        let value = ChannelValue::BitField(0b1010);
+        assert_eq!(value.bitfield(), 0b1010);
+    }
+
+    #[test]
+    #[should_panic]
+    fn test_channel_value_wrong_type_char() {
+        let value = ChannelValue::Int(42);
+        let _ = value.char();
+    }
+
+    #[test]
+    #[should_panic]
+    fn test_channel_value_wrong_type_bool() {
+        let value = ChannelValue::Int(42);
+        let _ = value.bool();
+    }
+
+    #[test]
+    #[should_panic]
+    fn test_channel_value_wrong_type_int() {
+        let value = ChannelValue::Float32(3.14);
+        let _ = value.int();
+    }
+
+    #[test]
+    #[should_panic]
+    fn test_channel_value_wrong_type_float32() {
+        let value = ChannelValue::Int(42);
+        let _ = value.float_32();
+    }
+
+    #[test]
+    #[should_panic]
+    fn test_channel_value_wrong_type_float64() {
+        let value = ChannelValue::Int(42);
+        let _ = value.float_64();
+    }
+
+    #[test]
+    #[should_panic]
+    fn test_channel_value_wrong_type_bitfield() {
+        let value = ChannelValue::Int(42);
+        let _ = value.bitfield();
+    }
+}
