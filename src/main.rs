@@ -1,7 +1,7 @@
 use std::time::Instant;
 use log::{Level, info};
 
-use racebudd_iracing_agent::RaceBuddTelem;
+use racebudd_iracing_telemetry_parser::RaceBuddTelem;
 
 pub fn main() {
     // Instantiate logging and set env_logger to terminal screen

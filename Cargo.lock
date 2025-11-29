@@ -172,7 +172,7 @@ dependencies = [
 ]
 
 [[package]]
-name = "racebudd_iracing_agent"
+name = "racebudd_iracing_telemetry_parser"
 version = "0.1.0"
 dependencies = [
  "env_logger",
