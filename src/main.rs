@@ -1,26 +1,19 @@
 use std::time::Instant;
+use log::{Level, info};
 
 use racebudd_iracing_agent::RaceBuddTelem;
 
 pub fn main() {
-    println!("Starting...");
-    let file_name: &str = r"C:\Users\Dheven\Documents\iRacing\telemetry\toyotagr86_willow international 2025-05-05 19-21-42.ibt";
-    let mut telem = RaceBuddTelem::new(file_name);
+    // Instantiate logging and set env_logger to terminal screen
+    env_logger::Builder::from_env(
+        env_logger::Env::default().default_filter_or("info")
+    ).init();
 
-    println!("Lap indices: {:?}", telem.lap_indices());
+    info!("Starting telemetry parser");
 
-    let target_laps = vec![1,2,3,4,5,6,7,8,9,10,11,12,13];
-    let test1 = Instant::now();
+    let file_name: &str = r"test_ibt_file.ibt";
+    info!("Attempting to parse file {}", &file_name);
 
-    let lap_data = telem.get_lap_data(&target_laps);
-
-    let mut lap_data_len = 0;
-    for (_, data) in lap_data {
-        lap_data_len += data.len();
-    }
-
-    println!("Lap data length: {:?}", lap_data_len);
-
-    println!("Duration: {:?}", test1.elapsed());
+    let telem = RaceBuddTelem::new(file_name);
 
 }

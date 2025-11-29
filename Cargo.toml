@@ -2,7 +2,14 @@
 name = "racebudd_iracing_agent"
 version = "0.1.0"
 edition = "2024"
+authors =["Dheven Bulseco dhevenb@gmail.com"]
+description = "Easy-to-use Rust library for accessing iRacing telemetry data"
+repository = "https://github.com/dhevenb/racebudd-iracing-telemetry-parser"
+license = "MIT OR Apache-2.0"  # Choose appropriate license
+keywords = ["iracing", "telemetry", "racing", "simulator"]
+categories = ["simulation", "game-development"]
 
 [dependencies]
 yore = "1.0.2"
-itelem = "0.1"
+log = "0.4"
+env_logger = "0.11"
