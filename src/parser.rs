@@ -4,6 +4,7 @@ use crate::headers::{FILE_INFO_HEADER_BYTES_SIZE, SESSION_INFO_HEADER_BYTES_SIZE
 use crate::telemetry_data::Ticks;
 use crate::utils::{ReadSeek, read_file_bytes};
 
+#[derive(Debug)]
 pub struct Parser {
     box_ibt_file: Box<dyn ReadSeek>,
 }

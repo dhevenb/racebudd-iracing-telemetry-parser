@@ -14,6 +14,9 @@ pub fn main() {
     let file_name: &str = r"test_ibt_file.ibt";
     info!("Attempting to parse file {}", &file_name);
 
-    let telem = RaceBuddTelem::new(file_name);
+    let mut telem = RaceBuddTelem::new(file_name);
+
+    
+    info!("Available Variables: {:?}", &telem.available_vars());
 
 }

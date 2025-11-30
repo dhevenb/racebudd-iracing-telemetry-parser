@@ -9,6 +9,7 @@ use headers::{FileInfo, SessionInfo, VarInfo};
 use parser::Parser;
 use telemetry_data::{Tick, Ticks, ChannelValue};
 
+#[derive(Debug)]
 pub struct RaceBuddTelem {
     parser: Parser,
 }
